@@ -46,8 +46,8 @@ public class MoveBlock : MonoBehaviour {
 
 		//compare color of ball to colour of block
 		if (GameObject.Find ("Ball").GetComponent<MoveBall> ().r > r - 0.05 && GameObject.Find ("Ball").GetComponent<MoveBall> ().r < r + 0.05) {
-			if (GameObject.Find ("Ball").GetComponent<MoveBall> ().r > r - 0.05 && GameObject.Find ("Ball").GetComponent<MoveBall> ().r < r + 0.05) {
-				if (GameObject.Find ("Ball").GetComponent<MoveBall> ().r > r - 0.05 && GameObject.Find ("Ball").GetComponent<MoveBall> ().r < r + 0.05) {
+			if (GameObject.Find ("Ball").GetComponent<MoveBall> ().g > g - 0.05 && GameObject.Find ("Ball").GetComponent<MoveBall> ().g < g + 0.05) {
+				if (GameObject.Find ("Ball").GetComponent<MoveBall> ().b > b - 0.05 && GameObject.Find ("Ball").GetComponent<MoveBall> ().b < b + 0.05) {
 					passed = true;
 				}
 			}
