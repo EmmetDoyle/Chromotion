@@ -8,6 +8,7 @@ public class MoveBlock : MonoBehaviour {
 	public SpriteRenderer blockRender;
 	public bool begun;
 	public float r, g, b;
+	public bool passed;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,7 @@ public class MoveBlock : MonoBehaviour {
 		screenPos.y = 0;
 
 		begun = false;
+		passed = false;
 		r = 0f;
 		g = 0.5f;
 		b = 1f;
@@ -32,12 +34,23 @@ public class MoveBlock : MonoBehaviour {
 			begun = true;
 		}
 
+		//move block from bottom to top and repeat
 		if (blockTransform.position.y > GameObject.Find ("MainCamera").GetComponent<ScreenSize> ().topBorder.y) {
 			ColorPicker();
 			blockRender.color = new Color (r, g, b, 1);
+			passed = false;
 			blockTransform.position = new Vector3 (blockTransform.position.x, GameObject.Find ("MainCamera").GetComponent<ScreenSize> ().bottomBorder.y, blockTransform.position.z);
 		} else {
 			blockTransform.position = new Vector3 (blockTransform.position.x, (blockTransform.position.y + 0.03f), blockTransform.position.z);
+		}
+
+		//compare color of ball to colour of block
+		if (GameObject.Find ("Ball").GetComponent<MoveBall> ().r > r - 0.05 && GameObject.Find ("Ball").GetComponent<MoveBall> ().r < r + 0.05) {
+			if (GameObject.Find ("Ball").GetComponent<MoveBall> ().r > r - 0.05 && GameObject.Find ("Ball").GetComponent<MoveBall> ().r < r + 0.05) {
+				if (GameObject.Find ("Ball").GetComponent<MoveBall> ().r > r - 0.05 && GameObject.Find ("Ball").GetComponent<MoveBall> ().r < r + 0.05) {
+					passed = true;
+				}
+			}
 		}
 	}
 

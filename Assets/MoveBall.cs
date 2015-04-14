@@ -33,12 +33,16 @@ public class MoveBall : MonoBehaviour {
 
 		ballRigidbody.velocity = new Vector3 (move * speed, ballRigidbody.velocity.y, 0);
 
+		//drop the ball until it hits either the bottom or a block
 		if (ballTransform.position.y > GameObject.Find ("Block").GetComponent<MoveBlock> ().blockTransform.position.y) {
 			ballTransform.position = new Vector3 (ballTransform.position.x, ballTransform.position.y - 0.5f, ballTransform.position.z);
-		} else {
+		} else if (!GameObject.Find ("Block").GetComponent<MoveBlock> ().passed) {
 			ballTransform.position = new Vector3 (ballTransform.position.x, GameObject.Find ("Block").GetComponent<MoveBlock> ().blockTransform.position.y, ballTransform.position.z);
+		} else {
+			ballTransform.position = new Vector3 (ballTransform.position.x, GameObject.Find ("MainCamera").GetComponent<ScreenSize> ().bottomBorder.y, ballTransform.position.z);
 		}
 
+		//change the colour of the ball as it moves along the screen
 		Vector3 screenPos = GameObject.Find("MainCamera").GetComponent<Camera>().WorldToScreenPoint(ballTransform.position);
 		if (screenPos.x < GameObject.Find ("MainCamera").GetComponent<ScreenSize> ().section1) {
 			r = 1f;
