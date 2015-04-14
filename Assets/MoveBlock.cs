@@ -33,6 +33,7 @@ public class MoveBlock : MonoBehaviour {
 		}
 
 		if (blockTransform.position.y > GameObject.Find ("MainCamera").GetComponent<ScreenSize> ().topBorder.y) {
+			ColorPicker();
 			blockRender.color = new Color (r, g, b, 1);
 			blockTransform.position = new Vector3 (blockTransform.position.x, GameObject.Find ("MainCamera").GetComponent<ScreenSize> ().bottomBorder.y, blockTransform.position.z);
 		} else {
@@ -44,44 +45,46 @@ public class MoveBlock : MonoBehaviour {
 	{
 		Color result;
 		int choice;
+		float rand;
 
 		choice = Random.Range ((int)0, (int)5);
+		rand = Random.Range (0, 1000);
 
 		switch (choice) {
 		case 0:
-				r = (Random.Range (0, 1000)) / 1000; 
+				r = rand / 1000; 
 				g = 1; 
 				b = 0;
 			break;
 
 		case 1:
-			     r = (Random.Range (0, 1000)) / 1000; 
-			     g = 0; 
-			     b = 1;
+				r = rand / 1000; 
+			    g = 0; 
+			    b = 1;
 			break;
 
 		case 2:
-			     r = 1; 
-			     g = (Random.Range (0, 1000)) / 1000; 
-			     b = 0;
+			    r = 1; 
+				g = rand / 1000; 
+			    b = 0;
 			break;
 
 		case 3: 
-				 r = 0;
-			     g = (Random.Range (0, 1000)) / 1000;
-			     b = 1;
+				r = 0;
+				g = rand / 1000;
+			    b = 1;
 			break;
 
 		case 4:
-			     r = 1;
-			     g = 0;
-			     b = (Random.Range (0, 1000)) / 1000;
+			    r = 1;
+			    g = 0;
+				b = rand / 1000;
 			break;
 
 		case 5:
-			     r = 0;
-			     g = 1;
-			     b = (Random.Range (0, 1000)) / 1000;
+			    r = 0;
+			    g = 1;
+				b = rand / 1000;
 			break;
 
 		}
