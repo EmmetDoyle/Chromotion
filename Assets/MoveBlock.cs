@@ -18,6 +18,7 @@ public class MoveBlock : MonoBehaviour {
 		Vector3 screenPos = GameObject.Find("MainCamera").GetComponent<Camera>().WorldToScreenPoint(blockTransform.position);
 		screenPos.y = 0;
 
+
 		begun = false;
 		passed = false;
 		r = 0f;
