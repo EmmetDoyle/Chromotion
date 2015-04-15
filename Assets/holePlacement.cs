@@ -6,12 +6,13 @@ public class holePlacement : MonoBehaviour {
 	public Transform holeTransform;
 	public SpriteRenderer holeRenderer;
 	public Vector3 xPos;
+	public bool matched;
 
 	// Use this for initialization
 	void Start () {
 		holeTransform = this.transform;
 		holeRenderer = gameObject.GetComponent<SpriteRenderer> ();
-
+		matched = false;
 	}
 	
 	// Update is called once per frame
@@ -21,7 +22,13 @@ public class holePlacement : MonoBehaviour {
 			holeTransform.position = new Vector3 (xPos.x, GameObject.Find ("MainCamera").GetComponent<ScreenSize> ().bottomBorder.y, holeTransform.position.z);
 
 		} else {
-			holeTransform.position = new Vector3 (holeTransform.position.x, (holeTransform.position.y + 0.03f), holeTransform.position.z);
+			holeTransform.position = new Vector3 (holeTransform.position.x, (holeTransform.position.y + 0.022f), holeTransform.position.z);
+		}
+
+		if ((holeTransform.position.x - 0.3f) < GameObject.Find ("Ball").GetComponent<MoveBall> ().ballTransform.position.x && (holeTransform.position.x + 0.3f) > GameObject.Find ("Ball").GetComponent<MoveBall> ().ballTransform.position.x) {
+			matched = true;
+		} else {
+			matched = false;
 		}
 
 	}

@@ -9,6 +9,7 @@ public class MoveBlock : MonoBehaviour {
 	public bool begun;
 	public float r, g, b;
 	public bool passed;
+	public bool matched;
 
 	// Use this for initialization
 	void Start () {
@@ -42,16 +43,31 @@ public class MoveBlock : MonoBehaviour {
 			passed = false;
 			blockTransform.position = new Vector3 (blockTransform.position.x, GameObject.Find ("MainCamera").GetComponent<ScreenSize> ().bottomBorder.y, blockTransform.position.z);
 		} else {
-			blockTransform.position = new Vector3 (blockTransform.position.x, (blockTransform.position.y + 0.03f), blockTransform.position.z);
+			blockTransform.position = new Vector3 (blockTransform.position.x, (blockTransform.position.y + 0.022f), blockTransform.position.z);
 		}
 
 		//compare color of ball to colour of block
-		if (GameObject.Find ("Ball").GetComponent<MoveBall> ().r > r - 0.05 && GameObject.Find ("Ball").GetComponent<MoveBall> ().r < r + 0.05) {
-			if (GameObject.Find ("Ball").GetComponent<MoveBall> ().g > g - 0.05 && GameObject.Find ("Ball").GetComponent<MoveBall> ().g < g + 0.05) {
-				if (GameObject.Find ("Ball").GetComponent<MoveBall> ().b > b - 0.05 && GameObject.Find ("Ball").GetComponent<MoveBall> ().b < b + 0.05) {
-					passed = true;
+		if (GameObject.Find ("Ball").GetComponent<MoveBall> ().r > r - 0.1 && GameObject.Find ("Ball").GetComponent<MoveBall> ().r < r + 0.1) {
+			if (GameObject.Find ("Ball").GetComponent<MoveBall> ().g > g - 0.1 && GameObject.Find ("Ball").GetComponent<MoveBall> ().g < g + 0.1) {
+				if (GameObject.Find ("Ball").GetComponent<MoveBall> ().b > b - 0.1 && GameObject.Find ("Ball").GetComponent<MoveBall> ().b < b + 0.1) {
+					matched = true;
+				}
+				else {
+					matched = false;
 				}
 			}
+			else
+			{
+				matched = false;
+		
+			}
+		}
+		else {
+			matched = false;
+		}
+
+		if (matched == true && GameObject.Find ("Hole").GetComponent<holePlacement> ().matched == true) {
+			passed = true;
 		}
 	}
 
