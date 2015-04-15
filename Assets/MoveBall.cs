@@ -11,6 +11,7 @@ public class MoveBall : MonoBehaviour {
 	public float r, g, b;
 	public bool change;
 	public bool passed;
+	public bool gameOver;
 
 
 	// Use this for initialization
@@ -27,6 +28,7 @@ public class MoveBall : MonoBehaviour {
 		speed = 8.0f;
 		change = false;
 		passed = false;
+		gameOver = false;
 
 		//print(GameObject.Find("MainCamera").renderer.bounds.size.x);
 	}
@@ -59,7 +61,9 @@ public class MoveBall : MonoBehaviour {
 			ballRigidbody.velocity = new Vector3 (altMove * speed, ballRigidbody.velocity.y, 0);
 		}
 
-
+		if (ballTransform.position.y > GameObject.Find ("MainCamera").GetComponent<ScreenSize> ().topBorder.y) {
+			Application.LoadLevel ("End");
+		}
 
 		//drop the ball until it hits either the bottom or a block
 		if (ballTransform.position.y > GameObject.Find ("Block").GetComponent<MoveBlock> ().blockTransform.position.y) {
